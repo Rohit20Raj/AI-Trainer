@@ -13,7 +13,7 @@ pTime = 0
 while True:
     success, img = cap.read()
     # img = cv2.imread("test.jpg")
-    img = cv2.resize(img, (1920, 1080))
+    # img = cv2.resize(img, (1920, 1080))
     img = detector.findPose(img, False)
     lmList = detector.findPosition(img, False)
     # print(lmList)
@@ -41,12 +41,15 @@ while True:
         cv2.rectangle(img, (1300, int(bar)), (1375, 650), color, cv2.FILLED)
         cv2.putText(img, f'{int(100-per)}%', (1300, 75), cv2.FONT_HERSHEY_PLAIN, 4, color, 4)
 
+        if per==0:
+            cv2.putText(img, str("Very Good !!!"), (450, 75), cv2.FONT_HERSHEY_PLAIN, 5, (0, 0, 255), 5)
+
         cv2.rectangle(img, (0, 650), (150, 820), (0, 255, 0), cv2.FILLED)
         cv2.putText(img, str(int(count)), (45, 745), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
 
     cTime = time.time()
     fps = 1/(cTime - pTime)
     pTime = cTime
-    cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
+    # cv2.putText(img, str(int(fps)), (50, 100), cv2.FONT_HERSHEY_PLAIN, 5, (255, 0, 0), 5)
     cv2.imshow("Image", img)
     cv2.waitKey(1)

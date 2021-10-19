@@ -1,0 +1,2 @@
+# AI Trainer
+ Practicum Project
